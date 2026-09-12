@@ -3,10 +3,12 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:user_db}:${DB_PORT:5432}/${POSTGRES_DB:user_db}?sslmode=${DB_SSLMODE:disable}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:energy_tracker_db}?sslmode=${DB_SSLMODE:disable}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: none
+server:
+  port: 8080
