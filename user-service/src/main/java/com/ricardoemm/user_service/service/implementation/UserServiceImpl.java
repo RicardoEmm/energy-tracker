@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
                 .name(request.name())
                 .surname(request.surname())
                 .email(request.email())
+                .address(request.address())
                 .alerting(request.alerting())
                 .energyAlertingThreshold(request.energyAlertingThreshold())
                 .build();
@@ -78,6 +79,7 @@ public class UserServiceImpl implements UserService {
                 .name(user.getName())
                 .surname(user.getName())
                 .email(user.getEmail())
+                .address(user.getAddress())
                 .alerting(user.isAlerting())
                 .energyAlertingThreshold(user.getEnergyAlertingThreshold())
                 .build();
