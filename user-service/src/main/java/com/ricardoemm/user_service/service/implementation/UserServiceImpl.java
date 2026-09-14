@@ -1,5 +1,6 @@
 package com.ricardoemm.user_service.service.implementation;
 
+import com.ricardoemm.user_service.exception.UserNotFoundException;
 import com.ricardoemm.user_service.model.User;
 import com.ricardoemm.user_service.dto.UserRequest;
 import com.ricardoemm.user_service.dto.UserResponse;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse findById(UUID id) {
         return toResponse( userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("user not found with ID: " + id)
+                () -> new UserNotFoundException("user not found with ID: " + id)
         ));
     }
 
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(UUID id, UserRequest request) {
         User userToUpdate = userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("user not found with ID: " + id)
+                () -> new UserNotFoundException("user not found with ID: " + id)
         );
 
         userToUpdate = userToUpdate.toBuilder()
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(UUID id) {
         User userToDelete = userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("user not found with ID: " + id)
+                () -> new UserNotFoundException("user not found with ID: " + id)
         );
         userRepository.deleteById(userToDelete.getId());
     }
