@@ -24,11 +24,11 @@ public class Device {
     @Column(name = "name")
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private DeviceType type;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
+    @Column(name = "location")
     private String location;
 
     @Column(name = "user_id")

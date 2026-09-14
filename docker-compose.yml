@@ -17,6 +17,38 @@ services:
     networks:
       - energy_tracker_net
 
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    container_name: user-api
+    restart: unless-stopped
+    env_file:
+      - ./user-service/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - energy_tracker_net
+
+  device-service:
+    build:
+      context: ./device-service
+      dockerfile: Dockerfile
+    container_name: device-api
+    restart: unless-stopped
+    env_file:
+      - ./device-service/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    networks:
+      - energy_tracker_net
+
 volumes:
   pgdata:
 
