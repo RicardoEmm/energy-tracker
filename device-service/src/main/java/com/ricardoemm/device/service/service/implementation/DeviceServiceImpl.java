@@ -2,6 +2,7 @@ package com.ricardoemm.device.service.service.implementation;
 
 import com.ricardoemm.device.service.dto.DeviceRequest;
 import com.ricardoemm.device.service.dto.DeviceResponse;
+import com.ricardoemm.device.service.exception.DeviceNotFoundException;
 import com.ricardoemm.device.service.model.Device;
 import com.ricardoemm.device.service.repository.DeviceRepository;
 import com.ricardoemm.device.service.service.DeviceService;
@@ -20,7 +21,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public DeviceResponse getById(UUID id) {
         return toResponse(deviceRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Device not found with id : " + id)
+                () -> new DeviceNotFoundException("Device not found with id : " + id)
         ));
     }
 
@@ -44,7 +45,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public DeviceResponse updateDevice(UUID id, DeviceRequest request) {
         Device existing = deviceRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Device not found with id : " + id)
+                () -> new DeviceNotFoundException("Device not found with id : " + id)
         );
 
         existing = existing.toBuilder()
