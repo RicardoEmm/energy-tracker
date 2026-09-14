@@ -19,7 +19,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> findById(@PathVariable("id") final UUID id) {
         return ResponseEntity.ok(userService.findById(id));

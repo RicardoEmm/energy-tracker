@@ -4,7 +4,7 @@ create table if not exists users (
     surname varchar(100),
     email varchar(255) not null,
     address text,
-    alerting bit not null default 0,
+    alerting boolean not null default false,
     energy_alerting_threshold double precision not null default 0
 );
 
